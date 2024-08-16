@@ -16,8 +16,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	direction.x = Input.get_action_strength("right") - Input.get_action_strength("left")
-	direction.y = Input.get_action_strength("down") - Input.get_action_strength("up")
+	direction = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down")).normalized()
 	pass
 	
 func _physics_process(delta: float) -> void:
@@ -27,7 +26,8 @@ func SetDirection() -> bool:
 	var new_dir : Vector2 = cardinal_direction
 	if direction ==Vector2.ZERO:
 		return false
-		
+	
+	#need 8 direction animation 
 	if direction.y == 0:
 		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
 	elif direction.x == 0:
@@ -46,9 +46,23 @@ func UpdateAnimation(state : String) -> void:
 	pass
 
 func AnimDirection() -> String:
-	if cardinal_direction == Vector2.DOWN:
+	if cardinal_direction == Vector2.DOWN:#&&LEFT return downleft?
 		return "down"
 	elif  cardinal_direction == Vector2.UP:
 		return "up"
-	else: 
+	#Maybe like this?:
+	#elif cardinal_direction == Vector2.UP && cardinal_direction == Vector2.LEFT: 
+	#	return "up"
+	#elif cardinal_direction == Vector2.UP && cardinal_direction == Vector2.RIGHT:
+	#	return "up"
+	#Alternatively in player state classes: 
+	#if Input.is_action_pressed('right'):
+	#    velocity.x += 1
+	#if Input.is_action_pressed('left'):
+	#    velocity.x -= 1
+	#if Input.is_action_pressed('down'):
+	#    velocity.y += 1
+	#if Input.is_action_pressed('up'):
+	#    velocity.y -= 1
+	else:
 		return "side"
