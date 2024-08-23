@@ -24,10 +24,11 @@ func _physics_process(delta: float) -> void:
 	
 func SetDirection() -> bool: 
 	var new_dir : Vector2 = cardinal_direction
-	if direction ==Vector2.ZERO:
+	if direction == Vector2.ZERO:
 		return false
 	
-	#need 8 direction animation 
+	#need 8 direction animation for 8 direction movement 
+	#there probably should be a parent conditional regarding combat state
 	if direction.y == 0:
 		new_dir = Vector2.LEFT if direction.x < 0 else Vector2.RIGHT
 	elif direction.x == 0:
@@ -50,19 +51,5 @@ func AnimDirection() -> String:
 		return "down"
 	elif  cardinal_direction == Vector2.UP:
 		return "up"
-	#Maybe like this?:
-	#elif cardinal_direction == Vector2.UP && cardinal_direction == Vector2.LEFT: 
-	#	return "up"
-	#elif cardinal_direction == Vector2.UP && cardinal_direction == Vector2.RIGHT:
-	#	return "up"
-	#Alternatively in player state classes: 
-	#if Input.is_action_pressed('right'):
-	#    velocity.x += 1
-	#if Input.is_action_pressed('left'):
-	#    velocity.x -= 1
-	#if Input.is_action_pressed('down'):
-	#    velocity.y += 1
-	#if Input.is_action_pressed('up'):
-	#    velocity.y -= 1
 	else:
 		return "side"

@@ -3,6 +3,13 @@ class_name PlayerStateMachine extends Node
 var states : Array [State]
 var prev_state : State
 var current_state : State
+#var in_combat : State
+#var exit_combat : State # or current state == combat && enemyhp == 0
+
+var invulnerable : bool = false
+var hp : int = 6
+var max_hp : int = 6
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -34,9 +41,9 @@ func Initialize( _player : Player) -> void:
 		process_mode = Node.PROCESS_MODE_INHERIT
 
 func ChangeState(new_state : State) -> void:
-	if new_state== null || new_state == current_state:
+	if new_state== null || new_state == current_state: #&& current_state != in_combat?
 		return
-		
+	
 	if current_state:
 		current_state.Exit()
 	
