@@ -6,9 +6,6 @@ var current_state : State
 #var in_combat : State
 #var exit_combat : State # or current state == combat && enemyhp == 0
 
-var invulnerable : bool = false
-var hp : int = 6
-var max_hp : int = 6
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

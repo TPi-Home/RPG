@@ -6,7 +6,7 @@ class_name State_Walk extends State
 #what happens when player enters state, can add combat state too
 func Enter() -> void:
 	player.UpdateAnimation("walk")
-	pass
+
 
 #what happens when player exits state
 func Exit() -> void:
@@ -14,13 +14,18 @@ func Exit() -> void:
 
 #physics process
 func Process(_delta : float) -> State:
-	if player.direction == Vector2.ZERO:
-		return idle
-	player.velocity = player.direction * move_speed
+	if Global.iswalking == true:
+		if player.direction == Vector2.ZERO:
+			return idle
+		player.velocity = player.direction * move_speed
 	
-	if player.SetDirection():
-		player.UpdateAnimation("walk")
-	return null
+		if player.SetDirection() && Global.iswalking == true:
+			player.UpdateAnimation("walk")
+		return null
+	else:
+		player.UpdateAnimation("idle")
+		player.velocity = Vector2.ZERO
+		return null
 	
 func Physics(_delta : float) -> State:
 	return null
