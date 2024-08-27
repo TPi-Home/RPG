@@ -42,10 +42,7 @@ func SetDirection() -> bool:
 	
 
 func UpdateAnimation(state : String) -> void:
-	if Global.iswalking == true:
-		animation_player.play(state + "_" + AnimDirection())
-	else:
-		animation_player.play("idle" + "_" + AnimDirection())
+	animation_player.play(state + "_" + AnimDirection())
 		
 
 func AnimDirection() -> String:

@@ -13,11 +13,9 @@ func Exit() -> void:
 
 #physics process
 func Process(_delta : float) -> State:
-	if Global.iswalking == true:
-		if player.direction != Vector2.ZERO:
-			return walk
+	if player.direction != Vector2.ZERO:
+		return walk
 	player.velocity = Vector2.ZERO
-	player.UpdateAnimation("idle")
 	return null
 	
 func Physics(_delta : float) -> State:

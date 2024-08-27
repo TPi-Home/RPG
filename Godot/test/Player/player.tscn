@@ -1,10 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://dk3yo06c5uoin"]
+[gd_scene load_steps=16 format=3 uid="uid://dk3yo06c5uoin"]
 
 [ext_resource type="Script" path="res://Player/Scripts/player.gd" id="1_h0ej4"]
 [ext_resource type="Texture2D" uid="uid://dagmo4tehv85h" path="res://Player/ExamplePlayerSprite.png" id="1_p1s7k"]
 [ext_resource type="Script" path="res://Player/Scripts/player_state_machine.gd" id="2_0566f"]
 [ext_resource type="Script" path="res://Player/Scripts/state_idle.gd" id="3_ouobe"]
 [ext_resource type="Script" path="res://Player/Scripts/state_walk.gd" id="5_sllu1"]
+[ext_resource type="Script" path="res://Player/Scripts/state_battle.gd" id="6_1b8o5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6wclo"]
 
@@ -162,5 +163,8 @@ script = ExtResource("3_ouobe")
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("5_sllu1")
+
+[node name="Battle" type="Node" parent="StateMachine"]
+script = ExtResource("6_1b8o5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
