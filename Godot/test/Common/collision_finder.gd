@@ -19,8 +19,11 @@ func _on_body_entered(body: Node2D) -> void:
 	var player = body as Player
 	var player_state_machine = player.get_node("StateMachine") as PlayerStateMachine
 	var battle_state = player_state_machine.get_node("Battle") as State_Battle
-	var walk_state = player_state_machine.get_node("Walk") as State_Walk
 	player_state_machine.ChangeState(battle_state)
-	#player_state_machine.ChangeState(player_state_machine.battle) redundant?
-	await 20
-	#testing exit battle state
+	
+	player.position += Vector2(-40, 40) 
+	
+
+
+	
+	
