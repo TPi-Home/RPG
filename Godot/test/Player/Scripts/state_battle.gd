@@ -9,7 +9,7 @@ var incombat : bool = false
 func _ready() -> void:
 	pass
 	#player = get_parent()
-	
+
 #what happens when player enters state, can add combat state too
 func Enter() -> void:
 	incombat = true

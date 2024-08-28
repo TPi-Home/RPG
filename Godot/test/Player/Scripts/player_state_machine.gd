@@ -10,7 +10,6 @@ var state_locked = false
 #var exit_combat : State # or current state == combat && enemyhp == 0
 @onready var battle : State_Battle = get_node("Battle")
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7ac7jfrp6gk6"]
+
+[ext_resource type="PackedScene" uid="uid://dk3yo06c5uoin" path="res://Player/player.tscn" id="1_yvibd"]
+[ext_resource type="PackedScene" uid="uid://cs2qh2epvsm3l" path="res://Tile Maps/Grass-01.tscn" id="2_aqxad"]
+[ext_resource type="PackedScene" uid="uid://cr1afdnrf412w" path="res://Battlers/Test/enemy.tscn" id="3_6yvtk"]
+
+[node name="Playground" type="Node2D"]
+
+[node name="Player" parent="." groups=["Player"] instance=ExtResource("1_yvibd")]
+position = Vector2(231, 170)
+collision_mask = 16
+
+[node name="Grass-01" parent="." instance=ExtResource("2_aqxad")]
+
+[node name="gd" parent="." instance=ExtResource("3_6yvtk")]
+z_index = -1
+position = Vector2(278, 60)

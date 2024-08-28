@@ -6,10 +6,8 @@ class_name CollisionFinder extends Area2D
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
@@ -20,8 +18,10 @@ func _on_body_entered(body: Node2D) -> void:
 	var player_state_machine = player.get_node("StateMachine") as PlayerStateMachine
 	var battle_state = player_state_machine.get_node("Battle") as State_Battle
 	player_state_machine.ChangeState(battle_state)
-	
-	player.position += Vector2(-40, 40) 
+	var knockback_direction = global_position - body.global_position
+	#bypassing state machine to apply knockback, should create a knockback state so as to
+	#allow users to 
+	player.ApplyKnockback(knockback_direction, -500, 0.3)
 	
 
 
