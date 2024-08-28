@@ -3,6 +3,13 @@ class_name PlayerStateMachine extends Node
 var states : Array [State]
 var prev_state : State
 var current_state : State
+
+#this is to keep player in State_Battle until enemy or player dies
+var state_locked = false
+
+#var exit_combat : State # or current state == combat && enemyhp == 0
+@onready var battle : State_Battle = get_node("Battle")
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
@@ -30,13 +37,16 @@ func Initialize( _player : Player) -> void:
 	
 	if states.size() > 0:
 		states[0].player = _player
-		ChangeState(states[0])
-		process_mode = Node.PROCESS_MODE_INHERIT
+	ChangeState(states[0])
+	process_mode = Node.PROCESS_MODE_INHERIT #determines whether to use process or process physics
 
 func ChangeState(new_state : State) -> void:
-	if new_state== null || new_state == current_state:
+	#checks if state_locked has been unlocked by completing a battle in battle state
+	if state_locked == true:
 		return
-		
+	if new_state == null or new_state == current_state: #&& current_state != in_combat?
+		return
+	
 	if current_state:
 		current_state.Exit()
 	
